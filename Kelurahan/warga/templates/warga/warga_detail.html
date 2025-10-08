@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Warga</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f6f8fa;
+            margin: 0;
+            padding: 32px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+            padding: 28px 24px 20px 24px;
+            margin-bottom: 32px;
+            border: 1px solid #e5e7eb;
+        }
+        h1 {
+            color: #222;
+            font-size: 2rem;
+            margin-bottom: 18px;
+            text-align: center;
+        }
+        .info {
+            margin-bottom: 18px;
+        }
+        .info p {
+            font-size: 1.08rem;
+            color: #444;
+            margin: 8px 0;
+        }
+        h2 {
+            color: #333;
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+            margin-top: 0;
+        }
+        .pengaduan-list {
+            display: grid;
+            gap: 18px;
+            margin-bottom: 8px;
+        }
+        .pengaduan-card {
+            background: #f9fafb;
+            border-radius: 8px;
+            padding: 16px 14px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+        }
+        .pengaduan-title {
+            font-weight: 600;
+            color: #222;
+            font-size: 1.05rem;
+        }
+        .pengaduan-desc {
+            color: #555;
+            margin: 6px 0 0 0;
+        }
+        .pengaduan-status {
+            font-size: 0.98rem;
+            color: #888;
+            margin-top: 8px;
+        }
+        .empty {
+            text-align: center;
+            color: #888;
+            font-style: italic;
+            background: #f9fafb;
+            border: 1px dashed #e5e7eb;
+            border-radius: 8px;
+            padding: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Detail Warga</h1>
+        <div class="card">
+            <div class="info">
+                <p><strong>Nama:</strong> {{ warga.nama_lengkap }}</p>
+                <p><strong>Alamat:</strong> {{ warga.alamat }}</p>
+                <p><strong>Nomor Telepon:</strong> {{ warga.no_telepon }}</p>
+            </div>
+        </div>
+        <div class="card">
+            <h2>Daftar Pengaduan oleh {{ object.nama_lengkap }}</h2>
+            <div class="pengaduan-list">
+                {% for pengaduan in object.pengaduan.all %}
+                <div class="pengaduan-card">
+                    <span class="pengaduan-title">{{ pengaduan.judul }}</span>
+                    <p class="pengaduan-desc">{{ pengaduan.isi }}</p>
+                    <div class="pengaduan-status">Status: {{ pengaduan.get_status_display }}</div>
+                </div>
+                {% empty %}
+                <div class="empty">Belum ada pengaduan.</div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
