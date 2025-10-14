@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hapus Warga</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f6f8fa;
+            margin: 0;
+            padding: 32px;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+            padding: 28px 24px 20px 24px;
+            margin-bottom: 32px;
+            border: 1px solid #e5e7eb;
+        }
+        h1 {
+            color: #c0392b;
+            font-size: 1.6rem;
+            margin-bottom: 18px;
+            text-align: center;
+        }
+        p {
+            color: #444;
+            font-size: 1.08rem;
+            margin-bottom: 18px;
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        button {
+            background: #c0392b;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 24px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        a {
+            color: #1976d2;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>Hapus Warga</h1>
+            <p>Apakah Anda yakin ingin menghapus data warga: <strong>{{ object.nama_lengkap }}</strong>?</p>
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit">Ya, Hapus</button>
+                <a href="{% url 'warga_detail' object.pk %}">Batal</a>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
