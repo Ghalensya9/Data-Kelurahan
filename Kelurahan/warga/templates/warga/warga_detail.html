@@ -92,25 +92,7 @@
                                 <a href="{% url 'warga_edit' object.pk %}">Edit Data</a> | 
                     <a href="{% url 'warga_delete' object.pk %}">Hapus Data</a>
         </div>
-        <div class="card">
-            <h2>Daftar Pengaduan oleh {{ object.nama_lengkap }}</h2>
-            <div class="pengaduan-list">
-                {% for pengaduan in object.pengaduan.all %}
-                <div class="pengaduan-card">
-                    <span class="pengaduan-title">{{ pengaduan.judul }}</span>
-                    <p class="pengaduan-desc">{{ pengaduan.isi }}</p>
-                    <div class="pengaduan-status">Status: {{ pengaduan.get_status_display }}</div>
-                    <!-- warga/templates/warga/warga_detail.html -->
-                    <h1>Detail Warga: {{ object.nama_lengkap }}</h1>
-
-
-                    <hr>
-                <a href="{% url 'pengaduan_edit' pengaduan.pk %}">Edit</a> |
-                <a href="{% url 'pengaduan_delete' pengaduan.pk %}">Hapus</a>
-                </div>
-                {% empty %}
-                <div class="empty">Belum ada pengaduan.</div>
-                {% endfor %}
+      
             </div>
         </div>
     </div>

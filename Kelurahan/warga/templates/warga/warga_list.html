@@ -59,9 +59,12 @@
         <li class="empty">Belum ada data warga yang terdaftar.</li>
     {% endfor %}
 
+
 <a href="{% url 'warga_create' %}">Tambah Warga Baru</a>
  | 
 <a href="{% url 'pengaduan_create' %}">Tambah Pengaduan Baru</a>
+ | 
+<a href="{% url 'pengaduan_list' %}">Daftar Pengaduan</a>
 
 <hr>
 <!-- ... (kode ul untuk daftar warga) ... -->
