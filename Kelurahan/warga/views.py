@@ -8,6 +8,8 @@ from rest_framework import viewsets # Impor viewsets
 from .serializers import WargaSerializer, PengaduanSerializer
 from .models import Warga
 from rest_framework import generics
+from rest_framework.permissions import IsAuthenticatedOrReadOnly # Impor ini
+from rest_framework.permissions import IsAdminUser 
 
 class WargaListAPI(ListAPIView):
     queryset = Warga.objects.all()
@@ -71,5 +73,11 @@ class WargaViewSet(viewsets.ModelViewSet):
 
 # Tambahkan ViewSet untuk model Pengaduan
 class PengaduanViewSet(viewsets.ModelViewSet):
-    queryset = Pengaduan.objects.all().order_by('-id')
+    queryset = Pengaduan.objects.all()  # <--- Baris ini hilang di kode Anda
     serializer_class = PengaduanSerializer
+    permission_classes = [IsAdminUser]
+
+class WargaViewSet(viewsets.ModelViewSet):
+    queryset = Warga.objects.all().order_by('-tanggal_registrasi')
+    serializer_class = WargaSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly] # Timpa izin default
